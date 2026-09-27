@@ -6,24 +6,24 @@
 <meta name="description" content="Ferramentas online gratuitas para cálculos e conversões do dia a dia.">
 <title>Utiliza — Ferramentas Online Grátis</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f6f7fb;color:#15171a}
-header{background:#fff;border-bottom:1px solid #e8e9ee;position:sticky;top:0;z-index:10}
-.nav{max-width:1100px;margin:auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:23px;font-weight:800;letter-spacing:-.7px}.logo span{color:#4f46e5}
-.nav small{color:#666}
-.hero{max-width:1100px;margin:0 auto;padding:58px 20px 35px;text-align:center}
-.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.02;letter-spacing:-2px;margin:0 auto 16px;max-width:760px}
-.hero p{font-size:18px;color:#666;max-width:650px;margin:0 auto 28px;line-height:1.55}
-.search{max-width:620px;margin:auto;display:flex;background:white;border:1px solid #ddd;border-radius:14px;padding:7px;box-shadow:0 8px 30px #0000000b}
-.search input{flex:1;border:0;outline:0;padding:12px;font-size:16px}.search button{border:0;background:#4f46e5;color:#fff;border-radius:10px;padding:0 18px;font-weight:700}
-main{max-width:1100px;margin:auto;padding:10px 20px 70px}
-h2{font-size:25px;margin:28px 0 18px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{background:#fff;border:1px solid #e8e9ee;border-radius:18px;padding:22px;transition:.2s}.card:hover{transform:translateY(-2px);box-shadow:0 12px 30px #0000000b}
-.icon{font-size:28px}.card h3{margin:12px 0 7px}.card p{color:#6b6f76;margin:0 0 17px;line-height:1.45}.open{border:0;background:#15171a;color:#fff;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f7f8fc;color:#14151a}
+header{background:#ffffffee;backdrop-filter:blur(14px);border-bottom:1px solid #e8e9ee;position:sticky;top:0;z-index:10}
+.nav{max-width:1120px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:900;letter-spacing:-1px}.logo span{color:#5b4cf6}.nav small{color:#6b6f78}
+.hero{max-width:1120px;margin:0 auto;padding:72px 20px 42px;text-align:center;background:radial-gradient(circle at 50% 20%,#ebe8ff 0,transparent 42%)}
+.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.01;letter-spacing:-3px;margin:0 auto 18px;max-width:800px}
+.hero h1:after{content:"";display:block;width:72px;height:5px;border-radius:9px;background:#5b4cf6;margin:20px auto 0}
+.hero p{font-size:18px;color:#626771;max-width:680px;margin:20px auto 30px;line-height:1.6}
+.search{max-width:650px;margin:auto;display:flex;background:white;border:1px solid #dddff0;border-radius:16px;padding:7px;box-shadow:0 14px 45px #3730a31a}
+.search input{flex:1;border:0;outline:0;padding:13px;font-size:16px;background:transparent}.search button{border:0;background:#5b4cf6;color:#fff;border-radius:11px;padding:0 20px;font-weight:800;cursor:pointer}
+main{max-width:1120px;margin:auto;padding:12px 20px 80px}
+h2{font-size:26px;letter-spacing:-.6px;margin:30px 0 18px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fff;border:1px solid #e6e7ee;border-radius:20px;padding:23px;transition:.2s;box-shadow:0 5px 18px #00000006}.card:hover{transform:translateY(-4px);box-shadow:0 16px 35px #00000010;border-color:#d7d2ff}
+.icon{font-size:30px;width:52px;height:52px;display:grid;place-items:center;border-radius:15px;background:#f0efff}.card h3{margin:14px 0 7px;font-size:19px}.card p{color:#6b6f78;margin:0 0 18px;line-height:1.5}.open{border:0;background:#17181c;color:#fff;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer}.open:hover{background:#5b4cf6}
 .tool{display:none;background:#fff;border:1px solid #e8e9ee;border-radius:18px;padding:24px;margin-top:24px}.tool.active{display:block}.tool-head{display:flex;justify-content:space-between;align-items:center;gap:15px}.close{border:0;background:#eee;border-radius:9px;padding:9px 12px;cursor:pointer}
 .form{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:20px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input,.field select{width:100%;padding:12px;border:1px solid #d8dae0;border-radius:10px;font-size:16px}
 .calc{margin-top:16px;border-radius:12px;background:#f3f3ff;padding:16px;font-size:18px;font-weight:700}.muted{color:#6b6f76;font-weight:400;font-size:14px}
-footer{background:#15171a;color:#bbb;padding:35px 20px;text-align:center}footer strong{color:#fff}
+footer{background:#15171a;color:#aaa;padding:42px 20px;text-align:center}footer strong{color:#fff;font-size:18px}footer small{display:block;margin-top:8px;line-height:1.5}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}.hero{padding-top:42px}.nav small{display:none}}
 </style>
 </head>
