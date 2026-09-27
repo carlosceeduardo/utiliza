@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Ferramentas online gratuitas para cálculos e conversões do dia a dia.">
+<title>Utiliza — Ferramentas Online Grátis</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f6f7fb;color:#15171a}
+header{background:#fff;border-bottom:1px solid #e8e9ee;position:sticky;top:0;z-index:10}
+.nav{max-width:1100px;margin:auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:23px;font-weight:800;letter-spacing:-.7px}.logo span{color:#4f46e5}
+.nav small{color:#666}
+.hero{max-width:1100px;margin:0 auto;padding:58px 20px 35px;text-align:center}
+.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.02;letter-spacing:-2px;margin:0 auto 16px;max-width:760px}
+.hero p{font-size:18px;color:#666;max-width:650px;margin:0 auto 28px;line-height:1.55}
+.search{max-width:620px;margin:auto;display:flex;background:white;border:1px solid #ddd;border-radius:14px;padding:7px;box-shadow:0 8px 30px #0000000b}
+.search input{flex:1;border:0;outline:0;padding:12px;font-size:16px}.search button{border:0;background:#4f46e5;color:#fff;border-radius:10px;padding:0 18px;font-weight:700}
+main{max-width:1100px;margin:auto;padding:10px 20px 70px}
+h2{font-size:25px;margin:28px 0 18px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#fff;border:1px solid #e8e9ee;border-radius:18px;padding:22px;transition:.2s}.card:hover{transform:translateY(-2px);box-shadow:0 12px 30px #0000000b}
+.icon{font-size:28px}.card h3{margin:12px 0 7px}.card p{color:#6b6f76;margin:0 0 17px;line-height:1.45}.open{border:0;background:#15171a;color:#fff;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+.tool{display:none;background:#fff;border:1px solid #e8e9ee;border-radius:18px;padding:24px;margin-top:24px}.tool.active{display:block}.tool-head{display:flex;justify-content:space-between;align-items:center;gap:15px}.close{border:0;background:#eee;border-radius:9px;padding:9px 12px;cursor:pointer}
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:20px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input,.field select{width:100%;padding:12px;border:1px solid #d8dae0;border-radius:10px;font-size:16px}
+.calc{margin-top:16px;border-radius:12px;background:#f3f3ff;padding:16px;font-size:18px;font-weight:700}.muted{color:#6b6f76;font-weight:400;font-size:14px}
+footer{background:#15171a;color:#bbb;padding:35px 20px;text-align:center}footer strong{color:#fff}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}.hero{padding-top:42px}.nav small{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">Utili<span>za</span></div><small>Ferramentas simples. Grátis.</small></div></header>
+<section class="hero">
+<h1>Resolva seus cálculos em segundos.</h1>
+<p>Ferramentas online gratuitas para dinheiro, estudos e tarefas do dia a dia.</p>
+<div class="search"><input id="search" placeholder="Buscar uma ferramenta..." oninput="filterCards()"><button onclick="filterCards()">Buscar</button></div>
+</section>
+<main>
+<h2>Ferramentas populares</h2>
+<div class="grid" id="cards">
+<article class="card" data-name="porcentagem"><div class="icon">%</div><h3>Porcentagem</h3><p>Calcule porcentagens, aumentos e descontos rapidamente.</p><button class="open" onclick="openTool('porcentagem')">Abrir ferramenta</button></article>
+<article class="card" data-name="juros compostos"><div class="icon">📈</div><h3>Juros compostos</h3><p>Simule quanto seu dinheiro pode crescer ao longo do tempo.</p><button class="open" onclick="openTool('juros')">Abrir ferramenta</button></article>
+<article class="card" data-name="salario salário"><div class="icon">💰</div><h3>Salário</h3><p>Faça uma estimativa simples do salário líquido.</p><button class="open" onclick="openTool('salario')">Abrir ferramenta</button></article>
+<article class="card" data-name="idade"><div class="icon">🎂</div><h3>Idade</h3><p>Descubra sua idade exata em anos, meses e dias.</p><button class="open" onclick="openTool('idade')">Abrir ferramenta</button></article>
+<article class="card" data-name="conversor unidades"><div class="icon">📏</div><h3>Conversor de unidades</h3><p>Converta comprimento, peso e temperatura.</p><button class="open" onclick="openTool('conversor')">Abrir ferramenta</button></article>
+</div>
+
+<section id="porcentagem" class="tool"><div class="tool-head"><h2>Calculadora de porcentagem</h2><button class="close" onclick="closeTools()">Fechar</button></div>
+<div class="form"><div class="field"><label>Valor</label><input id="pval" type="number" placeholder="100"></div><div class="field"><label>Porcentagem (%)</label><input id="ppct" type="number" placeholder="15"></div></div>
+<button class="open" style="margin-top:16px" onclick="calcPct()">Calcular</button><div id="pres" class="calc">Resultado aparecerá aqui.</div></section>
+
+<section id="juros" class="tool"><div class="tool-head"><h2>Juros compostos</h2><button class="close" onclick="closeTools()">Fechar</button></div>
+<div class="form"><div class="field"><label>Capital inicial (R$)</label><input id="jcap" type="number" value="1000"></div><div class="field"><label>Taxa mensal (%)</label><input id="jtax" type="number" value="1"></div><div class="field"><label>Meses</label><input id="jmes" type="number" value="12"></div><div class="field"><label>Aporte mensal (R$)</label><input id="jap" type="number" value="0"></div></div>
+<button class="open" style="margin-top:16px" onclick="calcJuros()">Simular</button><div id="jres" class="calc">Resultado aparecerá aqui.</div></section>
+
+<section id="salario" class="tool"><div class="tool-head"><h2>Estimativa de salário líquido</h2><button class="close" onclick="closeTools()">Fechar</button></div>
+<p class="muted">Estimativa simplificada. Descontos reais dependem do regime, INSS, IRRF e outros fatores.</p>
+<div class="form"><div class="field"><label>Salário bruto (R$)</label><input id="sbruto" type="number" value="2000"></div><div class="field"><label>Outros descontos (R$)</label><input id="soutros" type="number" value="0"></div></div>
+<button class="open" style="margin-top:16px" onclick="calcSal()">Estimar</button><div id="sres" class="calc">Resultado aparecerá aqui.</div></section>
+
+<section id="idade" class="tool"><div class="tool-head"><h2>Calculadora de idade</h2><button class="close" onclick="closeTools()">Fechar</button></div>
+<div class="field" style="max-width:420px;margin-top:20px"><label>Data de nascimento</label><input id="nasc" type="date"></div>
+<button class="open" style="margin-top:16px" onclick="calcIdade()">Calcular idade</button><div id="ires" class="calc">Resultado aparecerá aqui.</div></section>
+
+<section id="conversor" class="tool"><div class="tool-head"><h2>Conversor de unidades</h2><button class="close" onclick="closeTools()">Fechar</button></div>
+<div class="form"><div class="field"><label>Valor</label><input id="cval" type="number" value="1"></div><div class="field"><label>Conversão</label><select id="ctype"><option value="cm-m">cm → m</option><option value="m-cm">m → cm</option><option value="kg-lb">kg → lb</option><option value="lb-kg">lb → kg</option><option value="c-f">°C → °F</option><option value="f-c">°F → °C</option></select></div></div>
+<button class="open" style="margin-top:16px" onclick="convert()">Converter</button><div id="cres" class="calc">Resultado aparecerá aqui.</div></section>
+</main>
+<footer><strong>Utiliza</strong> — ferramentas online gratuitas.<br><small>Projeto MVP — pronto para receber novas ferramentas, SEO e monetização.</small></footer>
+<script>
+function closeTools(){document.querySelectorAll('.tool').forEach(x=>x.classList.remove('active'));window.scrollTo({top:0,behavior:'smooth'})}
+function openTool(id){closeTools();document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+function filterCards(){let q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.dataset.name.includes(q)?'block':'none')}
+function money(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+function calcPct(){let v=+pval.value,p=+ppct.value;pres.innerHTML=money(v*p/100)+' <span class="muted">é '+p+'% de '+money(v)+'</span>'}
+function calcJuros(){let c=+jcap.value,r=+jtax.value/100,n=+jmes.value,a=+jap.value;let total=c*Math.pow(1+r,n)+a*((Math.pow(1+r,n)-1)/r||n);jres.innerHTML=money(total)+' <span class="muted">valor estimado após '+n+' meses</span>'}
+function calcSal(){let b=+sbruto.value,o=+soutros.value;let inss=b<=1518?b*.075:b<=2793.88?b*.09-22.77:b<=4190.83?b*.12-106.59:b*.14-190.40;inss=Math.max(0,inss);let liq=Math.max(0,b-inss-o);sres.innerHTML=money(liq)+' <span class="muted">estimativa após INSS e outros descontos informados</span>'}
+function calcIdade(){let d=new Date(nasc.value+'T00:00:00');if(isNaN(d)){ires.textContent='Informe uma data.';return}let now=new Date(),y=now.getFullYear()-d.getFullYear(),m=now.getMonth()-d.getMonth(),day=now.getDate()-d.getDate();if(day<0){m--;day+=new Date(now.getFullYear(),now.getMonth(),0).getDate()}if(m<0){y--;m+=12}ires.innerHTML=y+' anos, '+m+' meses e '+day+' dias.'}
+function convert(){let v=+cval.value,t=ctype.value,r={};if(t==='cm-m')r={v:v/100,u:'m'};if(t==='m-cm')r={v:v*100,u:'cm'};if(t==='kg-lb')r={v:v*2.2046226218,u:'lb'};if(t==='lb-kg')r={v:v/2.2046226218,u:'kg'};if(t==='c-f')r={v:v*9/5+32,u:'°F'};if(t==='f-c')r={v:(v-32)*5/9,u:'°C'};cres.textContent=r.v.toLocaleString('pt-BR',{maximumFractionDigits:4})+' '+r.u}
+</script>
+</body>
+</html>
