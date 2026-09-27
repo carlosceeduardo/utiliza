@@ -42,6 +42,7 @@ footer{background:#15171a;color:#aaa;padding:42px 20px;text-align:center}footer 
 <article class="card" data-name="salario salário"><div class="icon">💰</div><h3>Salário</h3><p>Faça uma estimativa simples do salário líquido.</p><button class="open" onclick="openTool('salario')">Abrir ferramenta</button></article>
 <article class="card" data-name="idade"><div class="icon">🎂</div><h3>Idade</h3><p>Descubra sua idade exata em anos, meses e dias.</p><button class="open" onclick="openTool('idade')">Abrir ferramenta</button></article>
 <article class="card" data-name="conversor unidades"><div class="icon">📏</div><h3>Conversor de unidades</h3><p>Converta comprimento, peso e temperatura.</p><button class="open" onclick="openTool('conversor')">Abrir ferramenta</button></article>
+<article class="card" data-name="regra de três regra tres proporção"><div class="icon">🔢</div><h3>Regra de 3</h3><p>Resolva proporções simples de forma rápida e prática.</p><button class="open" onclick="openTool('regra3')">Abrir ferramenta</button></article>
 </div>
 
 <section id="porcentagem" class="tool"><div class="tool-head"><h2>Calculadora de porcentagem</h2><button class="close" onclick="closeTools()">Fechar</button></div>
@@ -61,6 +62,11 @@ footer{background:#15171a;color:#aaa;padding:42px 20px;text-align:center}footer 
 <div class="field" style="max-width:420px;margin-top:20px"><label>Data de nascimento</label><input id="nasc" type="date"></div>
 <button class="open" style="margin-top:16px" onclick="calcIdade()">Calcular idade</button><div id="ires" class="calc">Resultado aparecerá aqui.</div></section>
 
+<section id="regra3" class="tool"><div class="tool-head"><h2>Calculadora de regra de 3</h2><button class="close" onclick="closeTools()">Fechar</button></div>
+<p class="muted">Informe três valores para descobrir o quarto valor da proporção.</p>
+<div class="form"><div class="field"><label>A</label><input id="rA" type="number" placeholder="2"></div><div class="field"><label>B</label><input id="rB" type="number" placeholder="10"></div><div class="field"><label>C</label><input id="rC" type="number" placeholder="5"></div><div class="field"><label>X</label><input id="rX" type="number" placeholder="Resultado" disabled></div></div>
+<button class="open" style="margin-top:16px" onclick="calcRegra3()">Calcular X</button><div id="rres" class="calc">Resultado aparecerá aqui.</div></section>
+
 <section id="conversor" class="tool"><div class="tool-head"><h2>Conversor de unidades</h2><button class="close" onclick="closeTools()">Fechar</button></div>
 <div class="form"><div class="field"><label>Valor</label><input id="cval" type="number" value="1"></div><div class="field"><label>Conversão</label><select id="ctype"><option value="cm-m">cm → m</option><option value="m-cm">m → cm</option><option value="kg-lb">kg → lb</option><option value="lb-kg">lb → kg</option><option value="c-f">°C → °F</option><option value="f-c">°F → °C</option></select></div></div>
 <button class="open" style="margin-top:16px" onclick="convert()">Converter</button><div id="cres" class="calc">Resultado aparecerá aqui.</div></section>
@@ -75,6 +81,7 @@ function calcPct(){let v=+pval.value,p=+ppct.value;pres.innerHTML=money(v*p/100)
 function calcJuros(){let c=+jcap.value,r=+jtax.value/100,n=+jmes.value,a=+jap.value;let total=c*Math.pow(1+r,n)+a*((Math.pow(1+r,n)-1)/r||n);jres.innerHTML=money(total)+' <span class="muted">valor estimado após '+n+' meses</span>'}
 function calcSal(){let b=+sbruto.value,o=+soutros.value;let inss=b<=1518?b*.075:b<=2793.88?b*.09-22.77:b<=4190.83?b*.12-106.59:b*.14-190.40;inss=Math.max(0,inss);let liq=Math.max(0,b-inss-o);sres.innerHTML=money(liq)+' <span class="muted">estimativa após INSS e outros descontos informados</span>'}
 function calcIdade(){let d=new Date(nasc.value+'T00:00:00');if(isNaN(d)){ires.textContent='Informe uma data.';return}let now=new Date(),y=now.getFullYear()-d.getFullYear(),m=now.getMonth()-d.getMonth(),day=now.getDate()-d.getDate();if(day<0){m--;day+=new Date(now.getFullYear(),now.getMonth(),0).getDate()}if(m<0){y--;m+=12}ires.innerHTML=y+' anos, '+m+' meses e '+day+' dias.'}
+function calcRegra3(){let a=+rA.value,b=+rB.value,c=+rC.value;if(!a||isNaN(a)||isNaN(b)||isNaN(c)){rres.textContent='Preencha A, B e C com valores válidos.';return}let x=b*c/a;rX.value=x;rres.innerHTML=x.toLocaleString('pt-BR',{maximumFractionDigits:6})+' <span class="muted">é o valor de X</span>'}
 function convert(){let v=+cval.value,t=ctype.value,r={};if(t==='cm-m')r={v:v/100,u:'m'};if(t==='m-cm')r={v:v*100,u:'cm'};if(t==='kg-lb')r={v:v*2.2046226218,u:'lb'};if(t==='lb-kg')r={v:v/2.2046226218,u:'kg'};if(t==='c-f')r={v:v*9/5+32,u:'°F'};if(t==='f-c')r={v:(v-32)*5/9,u:'°C'};cres.textContent=r.v.toLocaleString('pt-BR',{maximumFractionDigits:4})+' '+r.u}
 </script>
 </body>
